@@ -69,3 +69,17 @@ def test_spatial_distance():
     second = make_track("B", 3.0, 4.0, 12.0)
 
     assert spatial_distance(first, second) == 13.0
+
+
+def test_heading_degrees():
+    from tracking.geometry import heading_degrees
+
+    assert heading_degrees(1.0, 0.0) == 0.0
+    assert heading_degrees(0.0, 1.0) == 90.0
+    assert heading_degrees(-1.0, 0.0) == 180.0
+
+
+def test_heading_degrees_for_stationary_object():
+    from tracking.geometry import heading_degrees
+
+    assert heading_degrees(0.0, 0.0) == 0.0

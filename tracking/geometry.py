@@ -59,3 +59,16 @@ def spatial_distance(
     dz = first.altitude - second.altitude
 
     return (dx ** 2 + dy ** 2 + dz ** 2) ** 0.5
+
+
+def heading_degrees(
+    velocity_x: float,
+    velocity_y: float,
+) -> float:
+    """Calculate horizontal heading in degrees."""
+    import math
+
+    if velocity_x == 0 and velocity_y == 0:
+        return 0.0
+
+    return math.degrees(math.atan2(velocity_y, velocity_x)) % 360.0
