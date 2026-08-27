@@ -13,6 +13,7 @@ class Track:
     altitude: float
     confidence: float
     observation_count: int = 0
+    age_seconds: float = 0.0
     velocity_x: float = 0.0
     velocity_y: float = 0.0
     velocity_z: float = 0.0
@@ -65,6 +66,13 @@ class Track:
             "confidence": self.confidence,
             "observation_count": self.observation_count,
         }
+
+    def advance_age(self, dt: float) -> None:
+        """Advance the time since the track was created."""
+        if dt < 0:
+            raise ValueError("dt must not be negative.")
+
+        self.age_seconds += float(dt)
 
     def status(self) -> str:
         """Return a human-readable confidence status."""

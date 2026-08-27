@@ -172,3 +172,22 @@ def test_track_status_classification():
     assert high.status() == "High confidence"
     assert medium.status() == "Medium confidence"
     assert low.status() == "Low confidence"
+
+
+def test_track_age_advances():
+    track = Track("OBJ-AGE", 0, 0, 1000, 0.8)
+
+    track.advance_age(2.5)
+
+    assert track.age_seconds == 2.5
+
+
+def test_track_age_rejects_negative_time():
+    track = Track("OBJ-AGE-NEG", 0, 0, 1000, 0.8)
+
+    try:
+        track.advance_age(-1)
+    except ValueError:
+        pass
+    else:
+        raise AssertionError("Negative time should raise ValueError")
