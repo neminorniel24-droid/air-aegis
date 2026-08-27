@@ -22,3 +22,18 @@ def altitude_difference(
 ) -> float:
     """Calculate absolute altitude difference between two tracks."""
     return abs(first.altitude - second.altitude)
+
+
+def speed_magnitude(
+    velocity_x: float,
+    velocity_y: float,
+    velocity_z: float = 0.0,
+) -> float:
+    """Calculate 3D velocity magnitude."""
+    import math
+
+    return math.sqrt(
+        velocity_x ** 2
+        + velocity_y ** 2
+        + velocity_z ** 2
+    )
