@@ -96,3 +96,36 @@ def test_track_update_can_update_velocity():
 
     assert track.velocity_x == 50.0
     assert track.velocity_y == 7.5
+
+
+def test_track_stores_vertical_velocity():
+    track = Track(
+        object_id="OBJ-004",
+        x=0.0,
+        y=0.0,
+        altitude=1000.0,
+        confidence=0.8,
+        velocity_z=25.0,
+    )
+
+    assert track.velocity_z == 25.0
+
+
+def test_track_update_can_change_vertical_velocity():
+    track = Track(
+        object_id="OBJ-005",
+        x=0.0,
+        y=0.0,
+        altitude=1000.0,
+        confidence=0.8,
+    )
+
+    track.update(
+        x=10.0,
+        y=20.0,
+        altitude=1100.0,
+        confidence=0.9,
+        velocity_z=30.0,
+    )
+
+    assert track.velocity_z == 30.0

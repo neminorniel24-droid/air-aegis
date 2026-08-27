@@ -15,6 +15,7 @@ class Track:
     observation_count: int = 0
     velocity_x: float = 0.0
     velocity_y: float = 0.0
+    velocity_z: float = 0.0
 
     def update(
         self,
@@ -24,6 +25,7 @@ class Track:
         confidence: float,
         velocity_x: float | None = None,
         velocity_y: float | None = None,
+        velocity_z: float | None = None,
     ) -> None:
         """Update the track with a new estimated state."""
         if not 0.0 <= confidence <= 1.0:
@@ -39,5 +41,8 @@ class Track:
 
         if velocity_y is not None:
             self.velocity_y = float(velocity_y)
+
+        if velocity_z is not None:
+            self.velocity_z = float(velocity_z)
 
         self.observation_count += 1
