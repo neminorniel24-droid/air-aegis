@@ -83,3 +83,12 @@ def test_heading_degrees_for_stationary_object():
     from tracking.geometry import heading_degrees
 
     assert heading_degrees(0.0, 0.0) == 0.0
+
+
+def test_heading_label():
+    from tracking.geometry import heading_label
+
+    assert heading_label(1.0, 0.0) == "East"
+    assert heading_label(0.0, 1.0) == "North"
+    assert heading_label(-1.0, 0.0) == "West"
+    assert heading_label(0.0, -1.0) == "South"

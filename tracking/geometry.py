@@ -72,3 +72,27 @@ def heading_degrees(
         return 0.0
 
     return math.degrees(math.atan2(velocity_y, velocity_x)) % 360.0
+
+
+def heading_label(
+    velocity_x: float,
+    velocity_y: float,
+) -> str:
+    """Return a cardinal direction label for a horizontal heading."""
+    angle = heading_degrees(velocity_x, velocity_y)
+
+    if angle < 22.5 or angle >= 337.5:
+        return "East"
+    if angle < 67.5:
+        return "North-East"
+    if angle < 112.5:
+        return "North"
+    if angle < 157.5:
+        return "North-West"
+    if angle < 202.5:
+        return "West"
+    if angle < 247.5:
+        return "South-West"
+    if angle < 292.5:
+        return "South"
+    return "South-East"
