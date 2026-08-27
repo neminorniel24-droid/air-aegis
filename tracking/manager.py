@@ -45,6 +45,10 @@ class TrackManager:
 
         return track
 
+    def remove(self, object_id: str) -> Track | None:
+        """Remove and return a track by object ID."""
+        return self._tracks.pop(object_id, None)
+
     def all(self) -> list[Track]:
         """Return all active tracks."""
         return list(self._tracks.values())

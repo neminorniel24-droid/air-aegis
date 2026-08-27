@@ -78,3 +78,21 @@ def test_manager_returns_all_tracks():
         "OBJ-001",
         "OBJ-002",
     }
+
+
+def test_manager_removes_track():
+    manager = TrackManager()
+    track = make_track("OBJ-REMOVE")
+
+    manager.add(track)
+    removed = manager.remove("OBJ-REMOVE")
+
+    assert removed is track
+    assert manager.get("OBJ-REMOVE") is None
+    assert len(manager) == 0
+
+
+def test_manager_remove_unknown_returns_none():
+    manager = TrackManager()
+
+    assert manager.remove("UNKNOWN") is None
