@@ -53,6 +53,10 @@ class TrackManager:
         """Return all active tracks."""
         return list(self._tracks.values())
 
+    def clear(self) -> None:
+        """Remove all active tracks."""
+        self._tracks.clear()
+
     def __len__(self) -> int:
         """Return the number of active tracks."""
         return len(self._tracks)

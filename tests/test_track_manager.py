@@ -96,3 +96,14 @@ def test_manager_remove_unknown_returns_none():
     manager = TrackManager()
 
     assert manager.remove("UNKNOWN") is None
+
+
+def test_manager_clear_removes_all_tracks():
+    manager = TrackManager()
+    manager.add(make_track("OBJ-001"))
+    manager.add(make_track("OBJ-002"))
+
+    manager.clear()
+
+    assert len(manager) == 0
+    assert manager.all() == []
