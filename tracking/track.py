@@ -13,6 +13,8 @@ class Track:
     altitude: float
     confidence: float
     observation_count: int = 0
+    velocity_x: float = 0.0
+    velocity_y: float = 0.0
 
     def update(
         self,
@@ -20,6 +22,8 @@ class Track:
         y: float,
         altitude: float,
         confidence: float,
+        velocity_x: float | None = None,
+        velocity_y: float | None = None,
     ) -> None:
         """Update the track with a new estimated state."""
         if not 0.0 <= confidence <= 1.0:
@@ -29,4 +33,11 @@ class Track:
         self.y = float(y)
         self.altitude = float(altitude)
         self.confidence = float(confidence)
+
+        if velocity_x is not None:
+            self.velocity_x = float(velocity_x)
+
+        if velocity_y is not None:
+            self.velocity_y = float(velocity_y)
+
         self.observation_count += 1

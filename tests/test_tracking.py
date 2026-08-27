@@ -59,3 +59,40 @@ def test_track_rejects_invalid_confidence():
             altitude=1000.0,
             confidence=1.5,
         )
+
+
+def test_track_stores_velocity():
+    track = Track(
+        object_id="OBJ-002",
+        x=0.0,
+        y=0.0,
+        altitude=1000.0,
+        confidence=0.8,
+        velocity_x=120.0,
+        velocity_y=5.0,
+    )
+
+    assert track.velocity_x == 120.0
+    assert track.velocity_y == 5.0
+
+
+def test_track_update_can_update_velocity():
+    track = Track(
+        object_id="OBJ-003",
+        x=0.0,
+        y=0.0,
+        altitude=1000.0,
+        confidence=0.8,
+    )
+
+    track.update(
+        x=10.0,
+        y=20.0,
+        altitude=1050.0,
+        confidence=0.9,
+        velocity_x=50.0,
+        velocity_y=7.5,
+    )
+
+    assert track.velocity_x == 50.0
+    assert track.velocity_y == 7.5
