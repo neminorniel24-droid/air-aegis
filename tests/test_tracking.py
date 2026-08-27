@@ -206,3 +206,19 @@ def test_track_last_seen_updates_on_observation():
     )
 
     assert track.last_seen == 3.0
+
+
+def test_track_freshness():
+    track = Track("OBJ-FRESH", 0, 0, 1000, 0.8)
+
+    track.update(
+        x=1,
+        y=1,
+        altitude=1000,
+        confidence=0.8,
+    )
+
+    track.advance_age(2.0)
+
+    assert track.is_fresh(max_age=5.0)
+    assert not track.is_fresh(max_age=1.0)

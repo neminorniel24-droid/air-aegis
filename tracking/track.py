@@ -13,11 +13,11 @@ class Track:
     altitude: float
     confidence: float
     observation_count: int = 0
-    age_seconds: float = 0.0
-    last_seen: float = 0.0
     velocity_x: float = 0.0
     velocity_y: float = 0.0
     velocity_z: float = 0.0
+    age_seconds: float = 0.0
+    last_seen: float = 0.0
 
     def update(
         self,
@@ -50,6 +50,12 @@ class Track:
         self.observation_count += 1
         self.last_seen = self.age_seconds
 
+    def advance_age(self, dt: float) -> None:
+        """Advance the time since the track was created."""
+        if dt < 0:
+            raise ValueError("dt must not be negative.")
+
+        self.age_seconds += float(dt)
 
     def summary(self) -> dict:
         """Return a compact representation of the current track state."""
@@ -67,14 +73,9 @@ class Track:
             },
             "confidence": self.confidence,
             "observation_count": self.observation_count,
+            "age_seconds": self.age_seconds,
+            "last_seen": self.last_seen,
         }
-
-    def advance_age(self, dt: float) -> None:
-        """Advance the time since the track was created."""
-        if dt < 0:
-            raise ValueError("dt must not be negative.")
-
-        self.age_seconds += float(dt)
 
     def status(self) -> str:
         """Return a human-readable confidence status."""
@@ -83,3 +84,10 @@ class Track:
         if self.confidence >= 0.5:
             return "Medium confidence"
         return "Low confidence"
+
+    def is_fresh(self, max_age: float = 5.0) -> bool:
+        """Return whether the track was seen within the freshness window."""
+        if max_age < 0:
+            raise ValueError("max_age must not be negative.")
+
+        return (self.age_seconds - self.last_seen) <= max_age

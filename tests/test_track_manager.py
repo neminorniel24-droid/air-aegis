@@ -107,3 +107,21 @@ def test_manager_clear_removes_all_tracks():
 
     assert len(manager) == 0
     assert manager.all() == []
+
+
+def test_manager_removes_track():
+    manager = TrackManager()
+    track = make_track("OBJ-REMOVE")
+
+    manager.add(track)
+    removed = manager.remove("OBJ-REMOVE")
+
+    assert removed is track
+    assert manager.get("OBJ-REMOVE") is None
+    assert len(manager) == 0
+
+
+def test_manager_remove_unknown_returns_none():
+    manager = TrackManager()
+
+    assert manager.remove("UNKNOWN") is None
