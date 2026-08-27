@@ -152,3 +152,23 @@ def test_track_summary_contains_current_state():
     assert summary["velocity"]["z"] == 3.0
     assert summary["confidence"] == 0.85
     assert summary["observation_count"] == 2
+
+
+def test_track_status_classification():
+    high = Track("HIGH", 0, 0, 1000, 0.9)
+    medium = Track("MEDIUM", 0, 0, 1000, 0.6)
+    low = Track("LOW", 0, 0, 1000, 0.2)
+
+    assert high.status() == "High confidence"
+    assert medium.status() == "Medium confidence"
+    assert low.status() == "Low confidence"
+
+
+def test_track_status_classification():
+    high = Track("HIGH", 0, 0, 1000, 0.9)
+    medium = Track("MEDIUM", 0, 0, 1000, 0.6)
+    low = Track("LOW", 0, 0, 1000, 0.2)
+
+    assert high.status() == "High confidence"
+    assert medium.status() == "Medium confidence"
+    assert low.status() == "Low confidence"

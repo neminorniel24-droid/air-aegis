@@ -65,3 +65,11 @@ class Track:
             "confidence": self.confidence,
             "observation_count": self.observation_count,
         }
+
+    def status(self) -> str:
+        """Return a human-readable confidence status."""
+        if self.confidence >= 0.8:
+            return "High confidence"
+        if self.confidence >= 0.5:
+            return "Medium confidence"
+        return "Low confidence"
