@@ -129,3 +129,26 @@ def test_track_update_can_change_vertical_velocity():
     )
 
     assert track.velocity_z == 30.0
+
+
+def test_track_summary_contains_current_state():
+    track = Track(
+        object_id="OBJ-006",
+        x=10.0,
+        y=20.0,
+        altitude=1500.0,
+        confidence=0.85,
+        velocity_x=40.0,
+        velocity_y=5.0,
+        velocity_z=3.0,
+        observation_count=2,
+    )
+
+    summary = track.summary()
+
+    assert summary["object_id"] == "OBJ-006"
+    assert summary["position"]["altitude"] == 1500.0
+    assert summary["velocity"]["x"] == 40.0
+    assert summary["velocity"]["z"] == 3.0
+    assert summary["confidence"] == 0.85
+    assert summary["observation_count"] == 2

@@ -46,3 +46,22 @@ class Track:
             self.velocity_z = float(velocity_z)
 
         self.observation_count += 1
+
+
+    def summary(self) -> dict:
+        """Return a compact representation of the current track state."""
+        return {
+            "object_id": self.object_id,
+            "position": {
+                "x": self.x,
+                "y": self.y,
+                "altitude": self.altitude,
+            },
+            "velocity": {
+                "x": self.velocity_x,
+                "y": self.velocity_y,
+                "z": self.velocity_z,
+            },
+            "confidence": self.confidence,
+            "observation_count": self.observation_count,
+        }
