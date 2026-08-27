@@ -60,3 +60,12 @@ def test_ground_speed_zero():
     from tracking.geometry import ground_speed
 
     assert ground_speed(0.0, 0.0) == 0.0
+
+
+def test_spatial_distance():
+    from tracking.geometry import spatial_distance
+
+    first = make_track("A", 0.0, 0.0, 0.0)
+    second = make_track("B", 3.0, 4.0, 12.0)
+
+    assert spatial_distance(first, second) == 13.0

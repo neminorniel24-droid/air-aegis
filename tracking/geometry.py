@@ -47,3 +47,15 @@ def ground_speed(
     import math
 
     return math.hypot(velocity_x, velocity_y)
+
+
+def spatial_distance(
+    first: Track,
+    second: Track,
+) -> float:
+    """Calculate 3D distance between two tracks."""
+    dx = first.x - second.x
+    dy = first.y - second.y
+    dz = first.altitude - second.altitude
+
+    return (dx ** 2 + dy ** 2 + dz ** 2) ** 0.5
