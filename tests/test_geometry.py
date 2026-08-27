@@ -48,3 +48,15 @@ def test_speed_magnitude_supports_vertical_velocity():
     from tracking.geometry import speed_magnitude
 
     assert speed_magnitude(2.0, 3.0, 6.0) == 7.0
+
+
+def test_ground_speed():
+    from tracking.geometry import ground_speed
+
+    assert ground_speed(3.0, 4.0) == 5.0
+
+
+def test_ground_speed_zero():
+    from tracking.geometry import ground_speed
+
+    assert ground_speed(0.0, 0.0) == 0.0

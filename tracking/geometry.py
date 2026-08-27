@@ -37,3 +37,13 @@ def speed_magnitude(
         + velocity_y ** 2
         + velocity_z ** 2
     )
+
+
+def ground_speed(
+    velocity_x: float,
+    velocity_y: float,
+) -> float:
+    """Calculate horizontal speed magnitude."""
+    import math
+
+    return math.hypot(velocity_x, velocity_y)
