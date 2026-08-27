@@ -191,3 +191,18 @@ def test_track_age_rejects_negative_time():
         pass
     else:
         raise AssertionError("Negative time should raise ValueError")
+
+
+def test_track_last_seen_updates_on_observation():
+    track = Track("OBJ-SEEN", 0, 0, 1000, 0.8)
+
+    track.advance_age(3.0)
+
+    track.update(
+        x=5,
+        y=6,
+        altitude=1100,
+        confidence=0.9,
+    )
+
+    assert track.last_seen == 3.0

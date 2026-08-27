@@ -14,6 +14,7 @@ class Track:
     confidence: float
     observation_count: int = 0
     age_seconds: float = 0.0
+    last_seen: float = 0.0
     velocity_x: float = 0.0
     velocity_y: float = 0.0
     velocity_z: float = 0.0
@@ -47,6 +48,7 @@ class Track:
             self.velocity_z = float(velocity_z)
 
         self.observation_count += 1
+        self.last_seen = self.age_seconds
 
 
     def summary(self) -> dict:
